@@ -1,0 +1,22 @@
+-#  This file is app/views/movies/discover.html.haml
+%h1 #{@movie.director} Movies
+
+%table#movies
+  %thead
+    %tr
+      %th Movie Title
+      %th Director
+      %th Rating
+      %th Release Date
+      %th More Info
+  %tbody
+    - @movies.each do |mv|
+      %tr
+        %td= mv.title 
+        %td= mv.director
+        %td= mv.rating
+        %td= mv.release_date
+        %td= link_to "More about #{mv.title}", movie_path(mv)
+
+= link_to "Back to movie '#{@movie.title}'", movie_path(@movie)
+= link_to 'Back to movie list', movies_path
