@@ -39,10 +39,10 @@ class MoviesController < ApplicationController
   def discover
     @movie = Movie.find params[:id]
     if @movie.director == nil || @movie.director == ''
-      flash[:notice] = "Movie '#{@movie.title}' does not have a director."
+      flash[:notice] = "'#{@movie.title}' has no director info."
       redirect_to movies_path
     else
-      @movies = Movie.find_all_by_director(@movie.director, {:order => :release_date})
+      @movies = Movie.discover(@movie)
     end
   end
 
